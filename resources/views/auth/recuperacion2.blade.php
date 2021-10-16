@@ -13,14 +13,16 @@
 
 <body>
 
-    <div style="position: absolute; height: 100%; width: 100%;
-   display: flex;
-   flex-direction: column;
-   justify-content: space-evenly;  background:linear-gradient(30deg, crimson,sienna, royalblue, indianred, purple);"
-        id="div2">
 
-        <!--Deberia de ir la imagen aqui-->
-        <img src="../img/fond.png" alt="">
+<div style="position: absolute; height: 100%; width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-evenly;
+                        background-image: url('../img/fond.png');
+                        background-repeat: no-repeat;
+                        background-attachment: fixed;
+                        background-size: cover;"
+        id="div2">
 
 
     </div>
