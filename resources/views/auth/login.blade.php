@@ -16,17 +16,18 @@
     <div style="position: absolute; height: 100%; width: 100%;
                         display: flex;
                         flex-direction: column;
-                        justify-content: space-evenly;  background:linear-gradient(30deg, crimson,sienna, royalblue, indianred, purple);"
+                        justify-content: space-evenly;background-image: url('./img/fond.png');
+                        background-repeat: no-repeat;
+                        background-attachment: fixed;
+                        background-size: cover;"
         id="div2">
-
-        <!--Deberia de ir la imagen aqui-->
-        <img src="./img/fond.png" alt="">
 
         <div style="margin-left: 45%;width: 30%; height: 100%;position: absolute;
                         display: flex;
                         flex-direction: column;
-                        justify-content: space-evenly;"><button style="width: 50%;" class="btn btn-warning"
-                id="moareas">Iniciar Sesión</button></div>
+                        justify-content: space-evenly;">
+            <button style="width: 50%;" class="btn btn-warning" id="moareas">Iniciar Sesión</button>
+        </div>
 
 
     </div>

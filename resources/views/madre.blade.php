@@ -42,8 +42,10 @@
     @yield('contenido')
     <br>
 </body>
-<footer><p class="copyright"> <strong> <i>Copyright© 2021 Asignatura: IA-189 - UNAH-TEC, Danlí, El Paraíso, Honduras, C.A.</i> </strong>
-</p></footer>
+
+@section('footer')
+<strong> <i>Copyright© 2021 Asignatura: IA-189 - UNAH-TEC, Danlí, El Paraíso, Honduras, C.A.</i> </strong>
+@stop
 
 </html>
 @stop
