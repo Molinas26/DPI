@@ -16,10 +16,24 @@ use Illuminate\Support\Facades\Route;
 //rutas para recuperar contraseña
 Route::get('recuperar1','PreguntasseguridadController@correo')->name('preguntas.correo');
 Route::post('recuperar1','PreguntasseguridadController@seguridad')->name('preguntas.seguridad');
-Route::get('twrw5345/{id}','PreguntasseguridadController@preguntas')->name('preguntas.preguntas')->where('id' ,'[0-9]+');
-Route::post('twrw5345/{id}','PreguntasseguridadController@revision')->name('preguntas.revision')->where('id' ,'[0-9]+');
-Route::get('rrtr5457/{id}','PreguntasseguridadController@cambio')->name('preguntas.cambio')->where('id' ,'[0-9]+');
-Route::post('rrtr5457/{id}','PreguntasseguridadController@confirmar')->name('preguntas.confirmar')->where('id' ,'[0-9]+');
+
+Route::get('twrw5345/{id}','PreguntasseguridadController@preguntas')
+->name('preguntas.preguntas')
+->where('id' ,'[0-9]+')
+->middleware('email');
+
+Route::post('twrw5345/{id}','PreguntasseguridadController@revision')
+->name('preguntas.revision')
+->where('id' ,'[0-9]+');
+
+Route::get('rrtr5457/{id}','PreguntasseguridadController@cambio')
+->name('preguntas.cambio')
+->where('id' ,'[0-9]+')
+->middleware('question');
+
+Route::post('rrtr5457/{id}','PreguntasseguridadController@confirmar')
+->name('preguntas.confirmar')
+->where('id' ,'[0-9]+');
 
 
 //validar logiado o no

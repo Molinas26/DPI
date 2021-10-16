@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\preguntasseguridad;
 use App\User;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -39,12 +40,11 @@ class PreguntasseguridadController extends Controller
             $id = $d->id;
         }
 
-        //determinamos si la variable cambio su valor osea habia un perfil con ese correo
-        if($id>0){
-            //si lo hay pasa a la siguiente vista
-            return redirect()->route('preguntas.preguntas',['id'=>$id]);
+        $dato1 = $cadenaEncriptada = Crypt::encryptString($correo);
+
+        if($correo != "" && $id != 0){
+            return redirect()->route('preguntas.preguntas',['id'=>$id ,'correo'=>$dato1]);
         }else{
-            //si no recarga la vista con el mensaje de error
             return redirect()->route('preguntas.correo')->with('mensaje', 'Correo no existe');
         }
         
@@ -82,12 +82,15 @@ class PreguntasseguridadController extends Controller
             $p2 = $d->pregunta2;
         }
 
+        $dato1 = $cadenaEncriptada = Crypt::encryptString($pre1);
+        $dato2 = $cadenaEncriptada = Crypt::encryptString($pre2);
+
         //validamos la pregunta 1 si la pregunta 1 esta buena pasa a la siguiente si no se envia mensaje de error
         if(Hash::check($pre1, $p1)){
             //validamos la pregunta 2 si esta correcta cambio de vista si no mensaje de error
             if(Hash::check($pre2, $p2)){
                 //cambio de vista
-                return redirect()->route('preguntas.cambio',['id'=>$id]);
+                return redirect()->route('preguntas.cambio',['id'=>$id,'pregunta1'=>$dato1, 'pregunta2'=>$dato2]);
             }else{
                 return redirect()->route('preguntas.preguntas',['id'=>$id])->with('mensaje2', 'Pregunta incorrecta');
             }
