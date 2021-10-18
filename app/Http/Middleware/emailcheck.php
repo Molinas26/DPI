@@ -18,7 +18,12 @@ class emailcheck
      */
     public function handle(Request $request, Closure $next)
     {
-        $correo = Crypt::decryptString($request->correo);
+
+        if($request->correo == null){
+            $correo = "";
+        }else{
+            $correo = Crypt::decryptString($request->correo);
+        }
 
         //realizamos la consulta
         $dat = DB::table('users')
@@ -33,10 +38,6 @@ class emailcheck
         foreach($dat as $d){
             $id = $d->id;
         }
-
-
-
-
         if($request->correo != "" && $request->id == $id){
             return $next($request);
         }else{

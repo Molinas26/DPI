@@ -20,6 +20,14 @@ class questioncheck
     public function handle(Request $request, Closure $next)
     {
 
+        if($request->pregunta1 == null && $request->pregunta2 == null){
+            $dato1 = "";
+            $dato2 = "";
+        }else{
+            $dato1 = Crypt::decryptString($request->pregunta1);
+            $dato2 = Crypt::decryptString($request->pregunta2);
+        }
+
         //realizamos una consulta para recuperar las respuestas de seguridad
         $dat = DB::table('preguntasseguridads')
         ->select('pregunta1', 'pregunta2')
@@ -36,9 +44,6 @@ class questioncheck
             $p1 = $d->pregunta1;
             $p2 = $d->pregunta2;
         }
-
-        $dato1 = Crypt::decryptString($request->pregunta1);
-        $dato2 = Crypt::decryptString($request->pregunta2);
 
         //validamos la pregunta 1 si la pregunta 1 esta buena pasa a la siguiente si no se envia mensaje de error
         if(Hash::check($dato1, $p1)){

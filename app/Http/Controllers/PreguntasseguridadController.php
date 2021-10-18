@@ -23,6 +23,8 @@ class PreguntasseguridadController extends Controller
     public function seguridad(Request $request)
     {
 
+        $correo = " ";
+
         //recuperamos el correo ingresado
         $correo = $request->input('email');
 
@@ -40,7 +42,7 @@ class PreguntasseguridadController extends Controller
             $id = $d->id;
         }
 
-        $dato1 = $cadenaEncriptada = Crypt::encryptString($correo);
+        $dato1 = Crypt::encryptString($correo);
 
         if($correo != "" && $id != 0){
             return redirect()->route('preguntas.preguntas',['id'=>$id ,'correo'=>$dato1]);
