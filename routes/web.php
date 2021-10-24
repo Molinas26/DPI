@@ -148,7 +148,7 @@ Route::middleware("auth")
         ->where('id','[0-9]+')->where('den','[A,B]')->where('i','[0-9]+');
 
         //crear usuario
-        Route::get('registrar','UserController@registrar')->middleware('password.confirm');
+        Route::get('registrar','UserController@registrar')->middleware('password.required');
         Route::post('registrar','UserController@register')->name('registrar.new');
 
         //rutas para reasignar denuncias

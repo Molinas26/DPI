@@ -21,8 +21,11 @@
 
 @section('body')
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 
 <link href="{{ asset('css/bos.css') }}" rel="stylesheet">
@@ -61,37 +64,42 @@ justify-content: space-evenly;  background:linear-gradient(#fff);"
         </div>
         <br>
 
-        <form style="
+        <form style="margin-left: 0px;
             display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;" method="POST" action="{{ route('password.confirm') }}"
+            flex-direction: column;" method="POST" action="{{ route('password.confirm') }}"
             class="lockscreen-credentials @if(!config('adminlte.usermenu_image'))ml-0 @endif">
             @csrf
 
 
-            <div class="input-group">
-                <input id="password" type="password" name="password" minlength="8" maxlength="20"
+            <div class="input-group" style="width: 500px;">
+                <label for="" style="float: left; width: 35%;line-height: 35px;">Ingrese su contraseña:</label>
+                <input style="float: left; width: 45%;" id="password" type="password" name="password" minlength="8" maxlength="20"
                     autocomplete="current-password"
                     class="form-control contraseña @error('password') is-invalid @enderror"
                     placeholder="Ingrese contraseña" required autofocus>
-                <div class="input-group-append">
-                    <button type="submit" class="btn">
-                        <i class="fas fa-arrow-right text-muted"></i>
-                    </button>
-                </div>
             </div>
             <br>
+            
+        <div style="float: left; width: 50%;">
+            <input style="margin-left:20px; float: left;" type="checkbox" id="mostrar_contraseña" title="clic para mostrar contraseña" />
+            <strong style=" float: left;margin-left: 5px;">Mostrar Contraseña</strong>
+        </div>
+            <br>
+        <div style="width: 100%;">
+            <button style="float: left;width: 80px; height: 50px;" type="submit" class=" btn-primary">
+                Entrar
+            </button>
+
+            <a style="float: right;width: 80px; height: 50px;line-height: 50px;" type="button" href="/" class=" btn-danger">
+                <center>
+                    Cancelar
+                </center>
+            </a>
+        </div>
 
         </form>
-        <a style="margin-left: 17%;" type="button" href="/" class="btn btn-primary  ">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
-                <path
-                    d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
-            </svg></a>
 
-        <input style="margin-left:20px;" type="checkbox" id="mostrar_contraseña" title="clic para mostrar contraseña" />
-        &nbsp;&nbsp;<strong>Mostrar Contraseña</strong>
+            <br><br>
 
     </div>
 
