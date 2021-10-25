@@ -1,25 +1,34 @@
 @extends('madre')
   @section('contenido')
   <br>
-  <h1><strong><center>Crear Nueva Cuenta</center></strong></h1>
+  <h1><strong><center>Crear Nueva Cuenta </center></strong></h1>
 <br>
     <form action="{{route('registrar.new')}}" method="post">
         {{ csrf_field() }}
 
         {{-- Name field --}}
         <div class="input-group mb-3">
-            <label style="float: left;padding-right: 0.5%;line-height: 220%;width: 18%;height: 40px;margin-left: 15%;" for="">Nombre completo:</label>
-            <input type="text" maxlength="100" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
-            style="height: 40px;" required
-                   value="{{ old('name') }}" placeholder="Ingrese su nombre completo" autofocus>
+            <label style="float: left;padding-right: 0.5%;line-height: 220%;width: 18%;height: 40px;margin-left: 15%;" for="">Nombre de usuario:</label>
+            <input type="text" maxlength="100" id="name" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
+            style="height: 40px;" required onkeydown="nameocultar()"
+                   value="{{ old('name') }}" placeholder="Ingrese su nombre de usuario" autofocus>
             <div class="input-group-append" style="margin-right: 20%;height: 40px;">
                 <div class="input-group-text">
                     <span class="fas fa-user"></span>
                 </div>
             </div>
+
+            <script>
+                function nameocultar(){
+                    var x = document.getElementById("errorname");
+                    x.style.display = "none";
+                    document.getElementById("name").className =document.getElementById("name").className.replace( /(?:^|\s)is-invalid(?!\S)/g , '' );
+                }
+            </script>
+
                 @if($errors->has('name'))
-                    <div class="invalid-feedback" style="margin-left: 31%;">
-                        <strong>Dato no valido</strong>
+                    <div class="invalid-feedback" id="errorname" style="margin-left: 31%;">
+                        <strong>Nombre de usuario ya existe</strong>
                     </div>
                 @endif
         </div>
@@ -27,7 +36,7 @@
         {{-- placa field --}}
         <div class="input-group mb-3">
             <label style="float: left;padding-right: 0.5%;line-height: 220%;width: 18%;height: 40px;margin-left: 15%;" for="">Placa:</label>
-            <input type="number" name="placa" class="form-control {{ $errors->has('placa') ? 'is-invalid' : '' }}"
+            <input type="number" name="placa" id="placa" class="form-control {{ $errors->has('placa') ? 'is-invalid' : '' }}" onkeydown="placaocular();"
                    value="{{ old('placa') }}" required placeholder="Ingrese el número de placa" autofocus maxlength="5" minlength="4" style="height: 40px;"
                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
             <div class="input-group-append"  style="margin-right: 20%;height: 40px;">
@@ -35,8 +44,17 @@
                     <span class="fa fa-th-large"></span>
                 </div>
             </div>
+
+            <script>
+                function placaocular(){
+                    var x = document.getElementById("errorplaca");
+                    x.style.display = "none";
+                    document.getElementById("placa").className =document.getElementById("placa").className.replace( /(?:^|\s)is-invalid(?!\S)/g , '' )
+                }
+            </script>
+
             @if($errors->has('placa'))
-            <div class="invalid-feedback" style="margin-left: 31%;">
+            <div class="invalid-feedback" id="errorplaca" style="margin-left: 31%;">
                 @if($errors->first('placa')=== 'validation.unique')
                     <strong>Valor en uso</strong>
                 @else
@@ -51,16 +69,25 @@
         <label style="float: left; left;padding-right: 0.5%;line-height: 220%;width: 18%;height: 40px;margin-left: 15%;" for="">Teléfono:</label>
           <input required style="float: left;width: 19%;" type="tel"  class="form-control {{ $errors->has('telefono') ? 'is-invalid' : '' }}" name="telefono"
           id="telefono" maxlength="8"  value="{{ old('telefono') }}"  pattern="^[9|8|3|2]\d{7}$"
-                 title="Ingrese un numero telefónico valido que inicie con 2,3,7,8 o 9"
-                 placeholder="Ingrese su número de teléfono"
+                 title="Ingrese un numero telefónico valido que inicie con 2,3,7,8 o 9 y que contenga 8 digitos"
+                 placeholder="Ingrese su número de teléfono" onkeydown="telefonoocultar();"
           oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
             <div class="input-group-append" style="margin-right: 20%;height: 40px;">
                 <div class="input-group-text">
                     <span class="fa fa-phone"></span>
                 </div>
             </div>
+
+            <script>
+                function telefonoocultar(){
+                    var x = document.getElementById("telefonoerror");
+                    x.style.display = "none";
+                    document.getElementById("telefono").className =document.getElementById("telefono").className.replace( /(?:^|\s)is-invalid(?!\S)/g , '' )
+                }
+            </script>
+
             @if($errors->has('telefono'))
-            <div class="invalid-feedback" style="margin-left: 31%;">
+            <div class="invalid-feedback" id="telefonoerror" style="margin-left: 31%;">
                 @if($errors->first('telefono')=== 'validation.unique')
                     <strong>Valor en uso</strong>
                 @else
@@ -74,14 +101,24 @@
         <div class="input-group mb-3">
             <label style="float: left;padding-right: 0.5%;line-height: 220%;width: 18%;height: 40px;margin-left: 15%;" for="">Correo electrónico:</label>
             <input type="email" name="email" pattern="^[a-zA-Z0-9.!#$%&+/=?^_`{|}~]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" style="height: 40px;"
-                   value="{{ old('email') }}" placeholder="Ingrese su correo electrónico" required>
+                   value="{{ old('email') }}" id="email" placeholder="Ingrese su correo electrónico" required
+                   title="por favor ingrese un correo valido" onkeydown="correoocultar()">
             <div class="input-group-append" style="margin-right: 20%;height: 40px;">
                 <div class="input-group-text">
                     <span class="fas fa-envelope"></span>
                 </div>
             </div>
+
+            <script>
+                function correoocultar(){
+                    var x = document.getElementById("errorcorreo");
+                    x.style.display = "none";
+                    document.getElementById("email").className =document.getElementById("email").className.replace( /(?:^|\s)is-invalid(?!\S)/g , '' )
+                }
+            </script>
+
             @if($errors->has('email'))
-            <div class="invalid-feedback" style="margin-left: 31%;">
+            <div class="invalid-feedback" id="errorcorreo" style="margin-left: 31%;">
                 @if($errors->first('email')=== 'validation.unique')
                     <strong>Valor en uso</strong>
                 @else
@@ -89,12 +126,13 @@
                 @endif
             </div>
             @endif
+
         </div>
 
         {{-- Password field --}}
         <div class="input-group mb-3">
             <label style="float: left;padding-right: 0.5%;line-height: 220%;width: 18%;height: 40px;margin-left: 15%;" for="">Contraseña:</label>
-            <input  maxlength="100" type="password" name="password" required id="pass"
+            <input  maxlength="100" type="password" name="password" required id="pass" onkeydown="passwordocultar()"
                    class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }} contraseña" style="height: 40px;"
                    placeholder="Ingrese su contraseña">
             <div class="input-group-append" style="margin-right: 20%;height: 40px;">
@@ -103,9 +141,18 @@
                 </div>
                 <span id="confi"></span>
             </div>
+
+            <script>
+                function passwordocultar(){
+                    var x = document.getElementById("passworderror");
+                    x.style.display = "none";
+                    document.getElementById("pass").className =document.getElementById("pass").className.replace( /(?:^|\s)is-invalid(?!\S)/g , '' )
+                }
+            </script>
+
             @if($errors->has('password'))
-            <div class="invalid-feedback" style="margin-left: 31%;">
-                <strong>Dato no valido</strong>
+            <div class="invalid-feedback" id="passworderror" style="margin-left: 31%;">
+                <strong>Contraseña no coincide</strong>
             </div>
             @endif
         </div>
@@ -113,7 +160,7 @@
         {{-- Confirm password field --}}
         <div class="input-group mb-3">
             <label style="float: left;padding-right: 0.5%;line-height: 220%;width: 18%;height: 40px;margin-left: 15%;" for="">Confirmar Contraseña:</label>
-            <input type="password" name="password_confirmation" required
+            <input type="password" name="password_confirmation" required id="password_confirmation" onkeydown="confirmocultar()" onkeyup="coincide()"
                    class="form-control {{ $errors->has('password_confirmation') ? 'is-invalid' : '' }} contraseña" style="height: 40px;"
                    placeholder="{{ __('adminlte::adminlte.retype_password') }}">
             <div class="input-group-append" style="margin-right: 20%;height: 40px;">
@@ -121,8 +168,34 @@
                     <span class="fas fa-lock"></span>
                 </div>
             </div>
+
+            <script>
+                function coincide(){
+                    var y = document.getElementById("confircoincide");
+                    y.style.display = "none";
+
+                    var c1 = document.getElementById("pass") .value; 
+                    var c2 = document.getElementById("password_confirmation") .value;                  
+
+                    if(c1 != c2){
+                        y.style.display = "block";
+                    }
+                    
+                }
+
+                function confirmocultar(){
+                    var x = document.getElementById("confirmerror");
+                    x.style.display = "none";
+                    document.getElementById("password_confirmation").className =document.getElementById("password_confirmation").className.replace( /(?:^|\s)is-invalid(?!\S)/g , '' )
+                }
+            </script>
+
+            <div class="invalid-feedback" id="confircoincide" style="display: none; margin-left: 32%">
+                <strong>Contrase no coinciden</strong>
+            </div>
+
             @if($errors->has('password_confirmation'))
-                <div class="invalid-feedback">
+                <div class="invalid-feedback" id="confirmerror">
                     <strong>{{ $errors->first('password_confirmation') }}</strong>
                 </div>
             @endif
@@ -141,7 +214,8 @@
             <label style="float: left;padding-right: 0.5%;line-height: 220%;width: 18%;height: 40px;margin-left: 15%;" for="">
             Nombre de su madre:</label>
             <input type="text" name="pregunta1" required value="{{old('pregunta1')}}"
-                   class="form-control" style="height: 40px;"
+                   class="form-control" style="height: 40px;" id="pregunta1" pattern="[A-Za-z\s]{1,15}"
+                   title="por favor ingrese solo letras"
                    placeholder="Ingrese el nombre de su madre">
             <div class="input-group-append" style="margin-right: 20%;height: 40px;">
                 <div class="input-group-text">
@@ -154,7 +228,8 @@
             <label style="float: left;padding-right: 0.5%;line-height: 220%;width: 18%;height: 40px;margin-left: 15%;" for="">
             Ciudad donde creció:</label>
             <input type="text" name="pregunta2" required value="{{old('pregunta2')}}"
-                   class="form-control" style="height: 40px;"
+                   class="form-control" style="height: 40px;" id="pregunta2" pattern="[A-Za-z\s]{1,15}"
+                   title="por favor ingrese solo letras"
                    placeholder="Ingrese la ciudad donde creció">
             <div class="input-group-append" style="margin-right: 20%;height: 40px;">
                 <div class="input-group-text">
@@ -247,4 +322,5 @@ $(document).ready(function() {
     });
 });
 </script>
+<br><br>
 @stop

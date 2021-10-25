@@ -6,6 +6,8 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Contracts\Routing\UrlGenerator;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 
 class PasswordRequire
 {
@@ -42,7 +44,7 @@ class PasswordRequire
     {
         $this->responseFactory = $responseFactory;
         $this->urlGenerator = $urlGenerator;
-        $this->passwordTimeout = $passwordTimeout ?: 180;
+        $this->passwordTimeout = $passwordTimeout ?: 1;
     }
 
     /**
@@ -55,18 +57,19 @@ class PasswordRequire
      */
     public function handle($request, Closure $next, $redirectToRoute = null)
     {
-        if ($this->shouldConfirmPassword($request)) {
-            if ($request->expectsJson()) {
-                return $this->responseFactory->json([
-                    'message' => 'Password confirmation required.',
-                ], 423);
+        if(URL::previous() != URL::current()){
+            if ($this->shouldConfirmPassword($request)) {
+                if ($request->expectsJson()) {
+                    return $this->responseFactory->json([
+                        'message' => 'Password confirmation required.',
+                    ], 423);
+                }
+    
+                return $this->responseFactory->redirectGuest(
+                    $this->urlGenerator->route($redirectToRoute ?? 'password.confirm')
+                );
             }
-
-            return $this->responseFactory->redirectGuest(
-                $this->urlGenerator->route($redirectToRoute ?? 'password.confirm')
-            );
         }
-
         return $next($request);
     }
 

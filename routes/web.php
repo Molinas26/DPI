@@ -149,7 +149,7 @@ Route::middleware("auth")
 
         //crear usuario
         Route::get('registrar','UserController@registrar')->name('registrar.new')->middleware('password.required');
-        Route::post('registrar','UserController@register');
+        Route::post('registrar','UserController@register')->name('registrar.nuevo');
 
         //rutas para reasignar denuncias
         Route::get('reasignar{id}','CambioController@index')-> name('cambio.index')->where('id','[0-9]+');

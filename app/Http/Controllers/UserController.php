@@ -128,7 +128,7 @@ class UserController extends Controller
 
         //validaciones
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', 'unique:users'],
             'placa' => ['required', 'string', 'min:4','max:5', 'unique:users'],
             'telefono' => ['required', 'string', 'min:8','max:8', 'unique:users'],
             'email' => ['required', 'string', 'email:filter', 'max:255', 'unique:users'],
