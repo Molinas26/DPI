@@ -6,7 +6,7 @@
     <form action="{{route('registrar.new')}}" method="post">
         {{ csrf_field() }}
 
-        {{-- Name field --}}
+
         <div class="input-group mb-3">
             <label style="float: left;padding-right: 0.5%;line-height: 220%;width: 18%;height: 40px;margin-left: 15%;" for="">Nombre de usuario:</label>
             <input type="text" maxlength="100" id="name" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
@@ -33,7 +33,7 @@
                 @endif
         </div>
 
-        {{-- placa field --}}
+
         <div class="input-group mb-3">
             <label style="float: left;padding-right: 0.5%;line-height: 220%;width: 18%;height: 40px;margin-left: 15%;" for="">Placa:</label>
             <input type="number" name="placa" id="placa" class="form-control {{ $errors->has('placa') ? 'is-invalid' : '' }}" onkeydown="placaocular();"
@@ -64,7 +64,7 @@
             @endif
         </div>
 
-        {{-- telefono field --}}
+
         <div class="input-group mb-3">
         <label style="float: left; left;padding-right: 0.5%;line-height: 220%;width: 18%;height: 40px;margin-left: 15%;" for="">Teléfono:</label>
           <input required style="float: left;width: 19%;" type="tel"  class="form-control {{ $errors->has('telefono') ? 'is-invalid' : '' }}" name="telefono"
@@ -97,7 +97,7 @@
             @endif
         </div>
 
-        {{-- Email field --}}
+
         <div class="input-group mb-3">
             <label style="float: left;padding-right: 0.5%;line-height: 220%;width: 18%;height: 40px;margin-left: 15%;" for="">Correo electrónico:</label>
             <input type="email" name="email" pattern="^[a-zA-Z0-9.!#$%&+/=?^_`{|}~]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" style="height: 40px;"
@@ -129,7 +129,7 @@
 
         </div>
 
-        {{-- Password field --}}
+
         <div class="input-group mb-3">
             <label style="float: left;padding-right: 0.5%;line-height: 220%;width: 18%;height: 40px;margin-left: 15%;" for="">Contraseña:</label>
             <input  maxlength="100" type="password" name="password" required id="pass" onkeydown="passwordocultar()"
@@ -157,7 +157,7 @@
             @endif
         </div>
 
-        {{-- Confirm password field --}}
+
         <div class="input-group mb-3">
             <label style="float: left;padding-right: 0.5%;line-height: 220%;width: 18%;height: 40px;margin-left: 15%;" for="">Confirmar Contraseña:</label>
             <input type="password" name="password_confirmation" required id="password_confirmation" onkeydown="confirmocultar()" onkeyup="coincide()"
