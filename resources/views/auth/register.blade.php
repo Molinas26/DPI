@@ -1,7 +1,10 @@
 @extends('madre')
   @section('contenido')
   <br>
-  <h1><strong><center>Crear Nueva Cuenta </center></strong></h1>
+
+
+  
+  <h1><strong><center>Crear Nueva Cuenta</center></strong></h1>
 <br>
     <form action="{{route('registrar.new')}}" method="post">
         {{ csrf_field() }}
