@@ -27,11 +27,19 @@
 
                                 <div class="col-md-6">
                                     <input id="oldpassword" maxlength="100" placeholder="Ingrese su contraseña"
-                                        type="password" minlength="8" class="form-control contraseña "
+                                        type="password" minlength="8" class="form-control contraseña " onkeydown="nameocultar()"
                                         name="oldpassword" required autocomplete="new-password">
 
+                                        <script>
+                                            function nameocultar(){
+                                                var x = document.getElementById("errorpassword1");
+                                                x.style.display = "none";
+                                                document.getElementById("oldpassword").className =document.getElementById("name").className.replace( /(?:^|\s)is-invalid(?!\S)/g , '' );
+                                            }
+                                        </script>
+
                                     @if(session('alerta1'))
-                                    <div style="color: red;">
+                                    <div style="color: red;" id="errorpassword1">
                                         Contraseña incorrecta
                                     </div>
                                     @endif
@@ -45,7 +53,7 @@
 
                                 <div class="col-md-6">
                                     <input id="password" maxlength="100" placeholder="Ingrese su nueva contraseña"
-                                        type="password" minlength="8"
+                                        type="password" minlength="8" onkeydown="mensajeerror()"
                                         class="form-control @error('password') is-invalid @enderror pass contraseña"
                                         name="password" required autocomplete="new-password">
                                         <span id="confi"></span>
@@ -57,14 +65,37 @@
                                     contraseña</label>
                                 <div class="col-md-6">
                                     <input id="password-confirm" maxlength="100" minlength="8"
-                                        placeholder="Confirme su contraseña" type="password"
+                                        placeholder="Confirme su contraseña" type="password" onkeyup="coincide()"
                                         class="form-control contraseña " name="password_confirmation" required
                                         autocomplete="new-password">
 
+                                        <script>
+                                            function coincide(){
+                                                var y = document.getElementById("errormensaje");
+                                                y.style.display = "none";
 
+                                                var c1 = document.getElementById("password") .value; 
+                                                var c2 = document.getElementById("password-confirm") .value;                  
+
+                                                if(c1 != c2){
+                                                    y.style.display = "block";
+                                                }
+                                                
+                                            }
+
+                                            function mensajeerror(){
+                                                var x = document.getElementById("mensajeerror");
+                                                x.style.display = "none";
+                                                document.getElementById("password").className =document.getElementById("name").className.replace( /(?:^|\s)is-invalid(?!\S)/g , '' );
+                                            }
+                                        </script>
+
+                                        <div style="color: red; display: none" id="errormensaje">
+                                            Contraseña no coincide
+                                        </div>
 
                                     @if(session('mensaje'))
-                                    <div style="color: red;">
+                                    <div style="color: red;" id="mensajeerror">
                                         Contraseña no coincide
                                     </div>
                                     @endif
