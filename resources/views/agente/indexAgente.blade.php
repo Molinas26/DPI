@@ -308,10 +308,11 @@ if($aux != "Principal"){
 
                                     <div class="form-group">
                                         <label for="placa" class="col-for-label">Placa:</label>
-                                        <input require type="text" class="form-control form-control-user" maxlength="5"
+                                        <input require type="number" class="form-control form-control-user" maxlength="5"
                                             name="placa" id="placa" value="{{$age->placa}}" autocomplete="off"
                                             placeholder="Ingrese la placa del Agente" onkeyup="validar()"
-                                            onkeydown="validar()">
+                                            onkeydown="validar()" minlength="4" maxlength="5"
+                                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                                     </div>
 
 
@@ -331,7 +332,7 @@ if($aux != "Principal"){
                                         <input required type="text" class="form-control form-control-user"
                                             maxlength="50" name="nombres" id="nombres" value="{{$age->nombres}}"
                                             autocomplete="off" placeholder="Ingrese el nombre del agente"
-                                            onkeydown="validar()" onkeyup="validar()">
+                                            onkeydown="validar()" onkeyup="validar()" onkeypress="return soloLetras(event)" onblur="limpia()">
                                     </div>
 
                                     <div class="form-group">
@@ -339,7 +340,8 @@ if($aux != "Principal"){
                                         <input type="text" require class="form-control form-control-user" maxlength="50"
                                             id="apellidos" name="apellidos" value="{{$age->apellidos}}"
                                             autocomplete="off" placeholder="Ingrese el apellido del agente"
-                                            onkeyup="validar()" onkeydown="validar()">
+                                            onkeyup="validar()" onkeydown="validar()"
+                                             onkeypress="return soloLetras(event)" onblur="limpia()">
                                     </div>
 
                                     <div class="form-group">

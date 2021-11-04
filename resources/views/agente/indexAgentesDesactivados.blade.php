@@ -55,7 +55,6 @@
     </svg>
     Principal
 </a>
-<a type="button" href="/agentes" id="Principal" class="btn btn-dark areas">Principal</a>
 <a type="button" href="/Cagentes" id="Comunes" class="btn btn-dark areas">Delitos Comunes</a>
 <a type="button" href="/Pagentes" id="Propiedad" class="btn btn-dark areas">Delitos Contra la Propiedad</a>
 <a type="button" href="/Vagentes" id="Vida" class="btn btn-dark areas">Delitos Contra la Vida</a>
