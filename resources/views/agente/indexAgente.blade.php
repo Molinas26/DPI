@@ -351,7 +351,9 @@ if($aux != "Principal"){
                                             name="telefono" value="{{$age->telefono}}"
                                             placeholder="Numero telefónico del agente" onkeydown="validar()"
                                             onkeyup="validar()" onload="ValidarTell()"
-                                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                            pattern="^[9|8|7|3|2]\d{7}$"
+                                            title="Ingrese un numero telefónico valido que inicie con 2,3,7,8 o 9">
                                     </div>
 
 
