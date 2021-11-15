@@ -35,7 +35,7 @@
             <label style="float: left;padding-right: 0.5%;line-height: 220%;width: 10%;" for="ndenuncia">Denuncia
                 N°:</label>
             <input style="float: left;width: 12%;" type="tex" min="0" class="form-control form-control-user"
-                   name="codigo" id="codigo" maxlength="10" value="{{ old('ndenuncia') }}" required
+                   name="codigo" id="codigo" maxlength="10" value="{{ old('codigo') }}" required
                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
         </div>
 
@@ -166,7 +166,8 @@
                 <br><br><br>
                 <input maxlength="100" require style="float: right;margin-right: 2%;line-height: 220%;width: 89%;"
                        type="text" class="form-control form-control-user" name="nombre_denunciante"
-                       id="nombre_denunciante" value="{{ old('nombre_denunciante') }}">
+                       id="nombre_denunciante" value="{{ old('nombre_denunciante') }}"
+                       pattern="[A-Za-z\s]{1,15}" title="por favor ingrese solo letras">
                 <label style="margin-left: 0.5%;line-height: 220%;width: 8%;" for="nombre">Nombre :</label>
             </div>
         </div>
@@ -286,7 +287,7 @@
             <label style="margin-left: 0.5%;line-height: 220%;width: 8%;" for="nombre" required>Nombre :</label>
         </div>
         <br>
-        <h5>Dirección</h5>
+        <h5>Dirección del ofendido</h5>
         <div class="form-group"></div>
         <!--Campo con el departamento-->
         <div class="form-group">
@@ -315,11 +316,7 @@
                 var sele = document.getElementById("departamento_ofendido").value;
 
                 @foreach($municipio as $mun)
-                if ({
-                {
-                    $mun - > departamento
-                }
-            } == sele) {
+                if ({{$mun -> departamento}} == sele) {
 
                     var miSelect = document.getElementById("municipio_ofendido");
 
@@ -385,16 +382,16 @@
 
             <textarea style="float: left;width: 40%;" name="caracteristica" maxlength="255" id="caracteristica"
                       placeholder="Ingrese las características del sospechoso." type="text" cols="" rows="3"
-                      class="form-control" value="{{ old('caracteristica') }}"></textarea>
+                      class="form-control" >{{ old('caracteristica') }}</textarea>
         </div>
         <br><br><br><br>
-        <h5>Dirección</h5>
+        <h5>Dirección del sospechoso</h5>
         <div class="form-group"></div>
         <!--Campo con el departamento-->
         <div class="form-group">
             <label style="float: left;margin-left: 0.5%;line-height: 220%;width: 10%;height: 38px;"
                    for="departamento">Departamento:</label>
-            <select onchange="cam2()" style="float: left; width: 14%;margin-left: 1%;height: 38px;" class=" "
+            <select onchange="cam2();" style="float: left; width: 14%;margin-left: 1%;height: 38px;" class=" "
                     name="departamento_sospechoso" id="departamento_sospechoso">
                 <option style="display: none;" value="7">El Paraíso</option>
                 @foreach($departamento as $dep)
@@ -417,11 +414,7 @@
                 var sele = document.getElementById("departamento_sospechoso").value;
 
                 @foreach($municipio as $mun)
-                if ({
-                {
-                    $mun - > departamento
-                }
-            } == sele) {
+                if ({{$mun->departamento}} == sele) {
 
                     var miSelect = document.getElementById("municipio_sospechoso");
 
@@ -437,6 +430,7 @@
                 /*
                  */
                 @endforeach
+                
             }
         </script>
 

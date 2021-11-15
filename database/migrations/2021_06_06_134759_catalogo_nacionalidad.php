@@ -20,7 +20,7 @@ class CatalogoNacionalidad extends Migration
         });
 
         DB::table("nacionalidads")->insert([
-            'nacionalidad' => 'Honduraña',
+            'nacionalidad' => 'Hondureña',
         ]);
         DB::table("nacionalidads")->insert([
             'nacionalidad' => 'Extranjera',
