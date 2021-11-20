@@ -125,13 +125,33 @@ style="float: left; width: 20%; height: 50px;">
                     <div class="form-group">
                         <label for="delito" class="col-form-label">Delito:</label>
                         <input required type="text" class="form-control form-control-user" maxlength="150" name="delito"
-                            id="delito" placeholder="Ingrese el nombre del delito">
+                            id="delito" placeholder="Ingrese el nombre del delito" onkeyup="validar()">
+                            <label for="" id="mensaje1" style="color: red"></label>
                     </div>
+
+                    <script>
+                        function validar(){
+                            var boton = document.getElementById('save');
+                            boton.disabled = true;
+
+                            var delito = document.getElementById('delito').value;
+
+                            if(delito != ''){
+                                boton.disabled = false;
+                                document.getElementById('mensaje1').innerHTML= '';    
+                            }else{
+                                document.getElementById('mensaje1').innerHTML= 'Esta campo no puede ser vacio';    
+                            }
+
+
+                                                    
+                        }
+                    </script>
 
                 </div>
                 <div class="modal-footer">
                     <!--Boton Guardar-->
-                    <button type="button" class="btn btn-primary" id="save" data-toggle="modal" data-target="#creardel">
+                    <button type="button" class="btn btn-primary" id="save" data-toggle="modal" data-target="#creardel" disabled>
                         Guardar
                     </button>
 
@@ -165,6 +185,8 @@ style="float: left; width: 20%; height: 50px;">
                                 <div class="modal-footer">
                                     <button type="submit" id="btn-save" name="btnsave"
                                         class="btn btn-primary">Guardar</button>
+
+
 
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Volver</button>
                                 </div>
