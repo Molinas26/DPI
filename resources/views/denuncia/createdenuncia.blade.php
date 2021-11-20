@@ -510,9 +510,9 @@
             </div>
         </div>
 
-        <button type="reset" class="btn btn-warning">
+        <a type="button" href="denuncianuevo" class="btn btn-warning">
             Limpiar
-        </button>
+        </a>
 
         <a type="button" class="btn btn-danger" href="javascript: history.go(-1)">
             Volver
