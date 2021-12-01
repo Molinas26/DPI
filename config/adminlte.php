@@ -307,19 +307,19 @@ return [
                 'icon'    => 'fas fa-chart-pie',
                 'submenu' => [
                     [
-                        'text' => 'Grafico por crimenes',
+                        'text' => 'Gráfico por crimenes',
                         'icon'    => 'fas fa-chart-pie',
                         'icon_color' => 'yellow',
                         'url'  => 'graficoscrimen',
                     ],
                     [
-                        'text'    => 'Grafico por agente',
+                        'text'    => 'Gráfico por agente',
                         'icon'    => 'fas fa-chart-pie',
                         'icon_color' => 'green',
                         'url'     => 'graficosagentes',
                     ],
                     [
-                        'text'    => 'Grafico por mes',
+                        'text'    => 'Información gráfica',
                         'icon'    => 'fas fa-chart-pie',
                         'icon_color' => 'blue',
                         'url'     => 'graficosdenuncias',

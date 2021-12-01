@@ -43,7 +43,7 @@
     </script>
 </head>
 <body >
-  <h1><center><strong>GRÁFICO DE DENUNCIAS: </strong>{{$mostrar}}</center></h1>
+  <h1><center><strong>Información gráfica de denuncias según el mes </strong>{{$mostrar}}</center></h1>
 <br>
       <form action="graficosdenuncias" method="GET">
       <div>
